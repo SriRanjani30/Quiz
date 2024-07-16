@@ -1,6 +1,6 @@
 body {
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  background-color: #f0f0f0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,55 +10,72 @@ body {
 
 .quiz-container {
   background-color: #fff;
-  padding: 20px 40px;
+  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   text-align: center;
   max-width: 600px;
-  width: 100%;
+  width: 90%;
+  animation: fadeIn 1s ease-in-out;
 }
 
-h1 {
+h2 {
   color: #333;
-  font-size: 24px;
   margin-bottom: 20px;
 }
 
 .question {
-  font-size: 18px;
-  color: #555;
-  margin: 20px 0;
-}
-
-.answers {
-  margin-bottom: 20px;
+  font-size: 1.2em;
+  margin-bottom: 10px;
 }
 
 .answers label {
   display: block;
-  margin: 5px 0;
-  font-size: 16px;
-  color: #333;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-button {
+.answers label:hover {
+  background-color: #f9f9f9;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+.nav-button, #submit {
   margin-top: 20px;
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: background-color 0.3s;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
+.nav-button:hover, #submit:hover {
   background-color: #0056b3;
 }
 
 #results {
   margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 1.2em;
+  color: #007bff;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
