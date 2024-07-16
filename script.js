@@ -1,4 +1,3 @@
-// Define quiz questions and answers
 const quizData = [
   {
     question: "What is the capital of France?",
@@ -25,9 +24,12 @@ const quizData = [
 
 const quizContainer = document.getElementById('quiz');
 const resultsContainer = document.getElementById('results');
+const previousButton = document.getElementById('previous');
+const nextButton = document.getElementById('next');
 const submitButton = document.getElementById('submit');
 
-// Function to display quiz questions
+let currentQuestionIndex = 0;
+
 function buildQuiz() {
   const output = [];
 
@@ -46,15 +48,16 @@ function buildQuiz() {
     }
 
     output.push(
-      `<div class="question">${currentQuestion.question}</div>
-      <div class="answers">${answers.join('')}</div>`
+      `<div class="question-container ${questionNumber === 0 ? '' : 'hidden'}">
+        <div class="question">${currentQuestion.question}</div>
+        <div class="answers">${answers.join('')}</div>
+      </div>`
     );
   });
 
   quizContainer.innerHTML = output.join('');
 }
 
-// Function to show results after quiz submission
 function showResults() {
   const answerContainers = quizContainer.querySelectorAll('.answers');
   let score = 0;
@@ -75,8 +78,28 @@ function showResults() {
   resultsContainer.innerHTML = `You scored ${score} out of ${quizData.length}`;
 }
 
-// Display quiz on page load
-buildQuiz();
+function showQuestion(index) {
+  const questionContainers = document.querySelectorAll('.question-container');
+  questionContainers.forEach((container, idx) => {
+    container.classList.toggle('hidden', idx !== index);
+  });
 
-// Event listener for quiz submission
+  previousButton.style.display = index === 0 ? 'none' : 'inline-block';
+  nextButton.style.display = index === quizData.length - 1 ? 'none' : 'inline-block';
+  submitButton.classList.toggle('hidden', index !== quizData.length - 1);
+}
+
+buildQuiz();
+showQuestion(currentQuestionIndex);
+
+previousButton.addEventListener('click', () => {
+  currentQuestionIndex--;
+  showQuestion(currentQuestionIndex);
+});
+
+nextButton.addEventListener('click', () => {
+  currentQuestionIndex++;
+  showQuestion(currentQuestionIndex);
+});
+
 submitButton.addEventListener('click', showResults);
