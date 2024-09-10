@@ -5,3 +5,5 @@
 5. Execute the "Quiz.html" file. Now you can start playing the Quiz.
 
 ![Screenshot (3463)](https://github.com/user-attachments/assets/24a4ab5e-30a5-455d-824c-da7b68c835dc)
+
+https://sriranjani30.github.io/Quiz/
